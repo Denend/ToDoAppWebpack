@@ -1,0 +1,120 @@
+.modalWindow {
+	visibility: hidden;
+	height: 370px;
+	position: fixed;
+	background: $dirt;
+	top: 140px;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: -1200px;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+	width: 250px;
+	padding: 16px;
+	border-radius: 10px;
+	transition-timing-function: ease-out;
+	opacity: 1;
+	transition: 0.25s;
+	transform: translateY(0);
+	display: flex;
+	flex-direction: column;
+	& > * {
+		margin-top: 16px;
+	}
+	&-open {
+		height: 370px;
+		position: fixed;
+		background: $dirt;
+		top: 140px;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin-top: auto;
+		margin-bottom: auto;
+		margin-left: auto;
+		margin-right: auto;
+		width: 250px;
+		padding: 16px;
+		border-radius: 10px;
+		transition-timing-function: ease-out;
+		opacity: 1;
+		transition: 0.25s;
+		transform: translateY(0);
+		display: flex;
+		flex-direction: column;
+		& > * {
+			margin-top: 16px;
+		}
+
+		input,
+		textarea {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border-radius: 4px;
+			background-size: 25px;
+			background-color: white;
+
+			&:focus {
+				outline: none;
+			}
+			&:hover {
+				padding: 13px 21px;
+				border: 1px solid $action-pinky;
+			}
+		}
+
+		#description {
+			height: 75px;
+			font: $main-font;
+			&:hover {
+				padding: 12px 20px;
+				border: 1px solid $action-pinky;
+			}
+		}
+		label {
+			font-size: 14px;
+			margin-left: 6px;
+			&:first-of-type {
+				margin-top: 0;
+			}
+		}
+		select {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border-radius: 4px;
+			&:focus {
+				outline: none;
+			}
+			&:hover {
+				border: 1px solid $action-pinky;
+			}
+		}
+		.buttonContainer {
+			margin-top: auto;
+			margin-bottom: 0px;
+			display: flex;
+			justify-content: space-between;
+			height: 45px;
+			button {
+				padding: 0 26px;
+				background: $action-pinky;
+				box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
+					inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
+					inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+				border: none;
+				color: white;
+				&:hover {
+					box-shadow: none;
+				}
+			}
+		}
+	}
+}

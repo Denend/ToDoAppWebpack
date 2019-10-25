@@ -1,6 +1,27 @@
-$fc: rgb(89, 0, 255);
+@import "./variables";
+@import "./body";
+@import "./header";
+@import "./footer.scss";
+@import "./modal.scss";
+body {
+	height: 100%;
+	position: relative;
+	margin: 0;
+	font-family: $main-font;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: $main-background;
+}
 
-div {
-	color: $fc;
-	font-weight: bold;
+html {
+	height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $headers-font;
 }

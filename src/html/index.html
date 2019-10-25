@@ -7,6 +7,47 @@
 		<title>ToDo Application</title>
 	</head>
 	<body>
-		<div>Yeeeeeeeeeeeee lol works</div>
+		<header class="app-header">
+			<h2>To Do List</h2>
+		</header>
+		<div class="app-body">
+			<form class="inputSection" >
+				<input class="inputSection-inputTitle" placeholder="search by title"></input>
+				
+				<select class="inputSection-statusSelect" >
+					<option selected value="all">all</option>
+					<option value="open">open</option>
+					<option value="done">done</option>
+				</select>	
+				<select class="inputSection-prioritySelect">
+					<option selected value="all">all</option>
+					<option value="high">high</option>
+					<option value="normal">normal</option>
+					<option value="low">low</option>
+				</select>
+				<button type='submit' class="createButton" >Create</button>
+			</form>
+			<div class="toDoSection"></div>
+			<form class="modalWindow">
+				<label for="title">ToDo title:</label>
+				<input type= "text" id="title" placeholder="Title"></input>
+				<label for="description">ToDo description:</label>
+				<textarea id="description" placeholder="Description"></textarea>
+				<label for="priority">ToDo priority:</label>
+				<select id="priority" >
+						<option selected value="high">high</option>
+						<option value="normal">normal</option>
+						<option value="low">low</option>
+				</select>
+				
+				<div class="buttonContainer">
+					<button class="closeModalButton" type="button">Cancel</button>
+					<button class="saveModal" type="submit">Save</button>
+				</div>
+			</form>
+		</div>
+		<footer class="app-footer">
+			<h4>Danylo Soloviov</h4>
+		</footer>
 	</body>
 </html>
