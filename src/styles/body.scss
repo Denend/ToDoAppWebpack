@@ -57,3 +57,13 @@
 		}
 	}
 }
+
+.toDoSection {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+
+	margin-bottom: 36px;
+	padding: 16px;
+	border-radius: 6px;
+}
