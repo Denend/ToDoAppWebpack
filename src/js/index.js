@@ -2,45 +2,42 @@ import "../styles/index.scss";
 import ModalWindow from "./ModalWindow";
 import SearchBar from "./mainSearchbar";
 import Notes from "./notes";
-import { createStore, applyMiddleware } from "redux";
-import logger from "redux-logger";
-import reducer from "./redux/reducer";
+import storeCB from "./redux/configureStore";
+import watch from "redux-watch";
+import { subscribe } from "redux-subscriber";
 
-// const handleFormSubmit = event => {
-// 	event.preventDefault();
-// 	const form = document.getElementsByClassName("inputSection")[0];
-// 	alert(form);
-// };
+const { store } = storeCB();
 
-const store = createStore(reducer, applyMiddleware(logger));
-
-function createNoteList() {
-	const storeNotes = store.getState().notes;
+function createNoteList(state) {
+	let storeNotes = state.notes;
 	return storeNotes.map(elem => {
 		let noteElement = document.createElement("div");
 		noteElement.classList.add("noteItem");
-		const noteHTML = `<h3>${elem.title}</h3>`;
+		const noteHTML = `<a class="closeButton" target="_self">&times;</a>
+        <h3>${elem.title}</h3><p class="description">${elem.description}</p>
+        <div class="noteItem-footer"><span class=${elem.priority}>Priority:${elem.priority}</span><select class="selectStatus">	
+        <option value="done">done</option>
+		<option value="edit">edit</option>
+        <option value="delete">delete</option></select></div>`;
 		noteElement.innerHTML = noteHTML;
 		return noteElement;
 	});
 }
 
-function render() {
-	const notesArray = createNoteList();
+function render(state) {
+	let notesArray = createNoteList(state);
 	document.querySelector(".toDoSection").innerHTML = "";
 	notesArray.forEach(element => {
 		document.querySelector(".toDoSection").appendChild(element);
 	});
 }
-store.subscribe(render);
+
+subscribe("notes", state => setTimeout(render(state), 1000));
 
 const modalClass = new ModalWindow();
 const searchBar = new SearchBar();
 const notesClass = new Notes();
-// notesClass.onStoreChange();
 searchBar.addSubmitEvent();
 searchBar.addButtonEvent();
 modalClass.addCloseEvent();
 modalClass.addSubmitEvent();
-
-export default store;

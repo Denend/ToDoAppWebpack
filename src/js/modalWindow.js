@@ -1,4 +1,5 @@
-import store from "./index";
+import storeCB from "./redux/configureStore";
+const { store } = storeCB();
 
 class ModalWindow {
 	appendNoteEvent() {}
