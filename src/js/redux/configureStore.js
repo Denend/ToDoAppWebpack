@@ -9,15 +9,13 @@ import initSubscriber from "redux-subscriber";
 const persistConfig = {
 	key: "root",
 	storage
+	//stateReconciler: hardSet
 	// whitelist: "notes"
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
+let store = createStore(persistedReducer, undefined, applyMiddleware(logger));
+let persistor = persistStore(store);
+const subscribe = initSubscriber(store);
 
-export default () => {
-	let store = createStore(persistedReducer, applyMiddleware(logger));
-	let persistor = persistStore(store);
-	const subscribe = initSubscriber(store);
-
-	return { store, persistor, subscribe };
-};
+export default store;

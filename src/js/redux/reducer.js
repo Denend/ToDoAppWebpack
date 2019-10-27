@@ -9,8 +9,12 @@ function reducer(state = initialState, { type, payload }) {
 				...initialState,
 				notes: [...state.notes, payload]
 			};
-		case "DECREMENT":
-			return state - 1;
+		case "DELETE_NOTE":
+			return {
+				...state,
+				...initialState,
+				notes: [...payload]
+			};
 		default:
 			return state;
 	}
