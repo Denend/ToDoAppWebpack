@@ -43,7 +43,7 @@
 			border: 1px solid $action-pinky;
 		}
 	}
-	button {
+	.createButton {
 		margin: 8px 0;
 		padding: 0 26px;
 		background: $action-pinky;
@@ -55,6 +55,10 @@
 		&:hover {
 			box-shadow: none;
 		}
+	}
+
+	.submitSearchbar {
+		display: none;
 	}
 }
 

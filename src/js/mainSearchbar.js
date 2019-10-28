@@ -11,14 +11,68 @@ class SearchBar {
 			document.querySelector("#inputSection-suggestions").appendChild(option);
 		});
 	}
-	addAutofealEvent() {
-		subscribe("notes", state => this.autoFealEvent());
-	}
-	addSubmitEvent() {
-		document.querySelector(".inputSection").addEventListener("submit", e => {
-			e.preventDefault();
-			const form = document.getElementsByClassName("inputSection")[0];
+
+	filterByTitle() {}
+
+	filterByStatus() {}
+
+	filterByPriority() {}
+
+	formSubmitEvent(event) {
+		let payload = [];
+		let notes = store.getState().notes;
+		let activeFilters = [];
+
+		event.preventDefault();
+		activeFilters.push({
+			title: event.target.querySelector(".inputSection-inputTitle").value
 		});
+		activeFilters.push({
+			status: event.target.querySelector(".inputSection-statusSelect").value
+		});
+
+		activeFilters.push({
+			priority: event.target.querySelector(".inputSection-prioritySelect").value
+		});
+		activeFilters.forEach(filter => {
+			const localNotes = notes;
+			const filterArr = Object.entries(filter)[0];
+			const key = filterArr[0];
+			const value = filterArr[1];
+			if (filter[key]) {
+				store.dispatch({ type: "SET_FILTERS" });
+				payload = [
+					...notes.filter(elem => {
+						return elem[key] === value;
+					})
+				];
+				notes = payload;
+			}
+		});
+
+		store.dispatch({ type: "FILTER_NOTES", payload: payload });
+	}
+
+	addSubmitEvent() {
+		document
+			.querySelector(".inputSection")
+			.addEventListener("submit", event => this.formSubmitEvent(event));
+		document
+			.querySelector(".inputSection-statusSelect")
+			.addEventListener("change", event => {
+				document.querySelector(".submitSearchbar").click();
+			});
+		document
+			.querySelector(".inputSection-prioritySelect")
+			.addEventListener("change", event => {
+				document.querySelector(".submitSearchbar").click();
+			});
+
+		document
+			.querySelector(".inputSection-inputTitle")
+			.addEventListener("keyup", event => {
+				document.querySelector(".submitSearchbar").click();
+			});
 	}
 
 	addButtonEvent() {

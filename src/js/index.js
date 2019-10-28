@@ -12,7 +12,9 @@ const searchBar = new SearchBar();
 const notesClass = new Notes();
 
 function createNoteList(state) {
-	let storeNotes = state.notes;
+	const { notes, isFiltered, filteredNotes } = state;
+
+	let storeNotes = isFiltered ? filteredNotes : notes;
 	return storeNotes.map((elem, index) => {
 		let noteElement = document.createElement("div");
 		noteElement.classList.add("noteItem");
@@ -35,7 +37,8 @@ function createNoteList(state) {
 	});
 }
 
-function render(state) {
+function render() {
+	const state = store.getState();
 	let notesArray = createNoteList(state);
 	document.querySelector(".toDoSection").innerHTML = "";
 	notesArray.forEach(element => {
@@ -44,10 +47,11 @@ function render(state) {
 	searchBar.autoFealEvent(state);
 }
 
-subscribe("notes", state => render(state));
+store.subscribe(render);
 
 searchBar.addSubmitEvent();
 searchBar.addButtonEvent();
 modalClass.addCloseEvent();
 modalClass.addSubmitEvent();
+
 // notesClass.addDeleteNoteEvent();

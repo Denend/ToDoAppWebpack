@@ -2,7 +2,6 @@ import store from "./redux/configureStore";
 // const { store } = storeCB();
 
 class ModalWindow {
-	appendNoteEvent() {}
 	closeModal() {
 		const modal = document.querySelector(".modalWindow-open");
 		modal.classList.toggle("modalWindow-open");
@@ -36,10 +35,10 @@ class ModalWindow {
 			description,
 			title,
 			priority,
-			id
+			id,
+			status: "open"
 		};
 		store.dispatch({ type: "ADD_NOTE", payload: payload });
-		this.appendNoteEvent();
 		this.resetForm();
 		this.closeModal();
 	}

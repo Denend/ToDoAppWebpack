@@ -16,17 +16,20 @@
 				<datalist id="inputSection-suggestions"></datalist>
 				
 				<select class="inputSection-statusSelect" >
-					<option selected value="all">all</option>
+					<option value="" disabled selected>by status</option>
+					<option value="">all</option>
 					<option value="open">open</option>
 					<option value="done">done</option>
 				</select>	
 				<select class="inputSection-prioritySelect">
-					<option selected value="all">all</option>
+					<option value="" disabled selected>by priority</option>
+					<option value="">all</option>
 					<option value="high">high</option>
 					<option value="normal">normal</option>
 					<option value="low">low</option>
 				</select>
-				<button type='submit' class="createButton" >Create</button>
+				<button type='button' class="createButton" >Create</button>
+				<button type='submit' class="submitSearchbar" ></button>
 			</form>
 			<div class="toDoSection"></div>
 			<form class="modalWindow">

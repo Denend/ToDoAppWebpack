@@ -8,9 +8,9 @@ import initSubscriber from "redux-subscriber";
 
 const persistConfig = {
 	key: "root",
-	storage
+	storage,
 	//stateReconciler: hardSet
-	// whitelist: "notes"
+	whitelist: "notes"
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
