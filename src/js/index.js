@@ -4,7 +4,6 @@ import SearchBar from './mainSearchbar';
 import Notes from './notes';
 import store from './redux/configureStore';
 
-// const { store } = storeCB();
 const modalClass = new ModalWindow();
 const searchBar = new SearchBar();
 const notesClass = new Notes();
@@ -22,17 +21,17 @@ function createNoteList(state) {
     closeElem.innerHTML = '&times;';
     closeElem.classList.add('closeButton');
     closeElem.target = '_self';
-    closeElem.onclick = () => notesClass.dleteNoteEvent(event, state);
+    closeElem.onclick = (event) => notesClass.dleteNoteEvent(event, state);
 
     const select = document.createElement('select');
     select.classList.add('selectStatus');
-    select.onchange = () => notesClass.markAsEvent(event, state);
+    select.onchange = (event) => notesClass.markAsEvent(event, state);
 
     noteOptions.forEach((option) => {
       const optionElem = document.createElement('option');
       if (option === 'default') {
-        optionElem.default;
-        optionElem.selected;
+        optionElem.default = true;
+        optionElem.selected = true;
         optionElem.value = '';
         optionElem.innerHTML = '-----';
       } else {

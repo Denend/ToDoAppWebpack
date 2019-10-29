@@ -13,7 +13,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = createStore(persistedReducer, undefined, applyMiddleware(logger));
-const persistor = persistStore(store);
-const subscribe = initSubscriber(store);
+persistStore(store);
+initSubscriber(store);
 
 export default store;

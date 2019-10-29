@@ -15,7 +15,11 @@ class Notes extends SearchBar {
     const noteId = e.target.parentNode.id;
     const payload = notes.map((elem) => {
       if (elem.id === noteId) {
-        elem.status = 'done';
+        const status = 'done';
+        return {
+          ...elem,
+          status,
+        };
       }
       return elem;
     });
@@ -24,7 +28,7 @@ class Notes extends SearchBar {
   }
 
   editNoteEvent(e, state) {
-    const { isFiltered, notes } = state;
+    const { notes } = state;
     const noteId = e.target.parentNode.id;
     const currentNote = notes.filter((elem) => elem.id === noteId);
 
@@ -53,7 +57,6 @@ class Notes extends SearchBar {
         this.dleteNoteEvent(event, state);
         break;
       default:
-        return true;
     }
   }
 }
