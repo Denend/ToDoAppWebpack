@@ -1,8 +1,9 @@
 import store from "./redux/configureStore";
 import { subscribe } from "redux-subscriber";
+import ModalWindow from "./ModalWindow";
 // const { store, persistor } = storeCB();
 
-class SearchBar {
+class SearchBar extends ModalWindow {
 	autoFealEvent(state) {
 		document.querySelector("#inputSection-suggestions").innerHTML = "";
 		state.notes.forEach(elem => {
@@ -12,11 +13,9 @@ class SearchBar {
 		});
 	}
 
-	filterByTitle() {}
-
-	filterByStatus() {}
-
-	filterByPriority() {}
+	checkIfEmpty(arrayProt) {
+		return arrayProt.filter(elem => Object.values(elem)[0]).length;
+	}
 
 	formSubmitEvent(event) {
 		let payload = [];
@@ -34,6 +33,11 @@ class SearchBar {
 		activeFilters.push({
 			priority: event.target.querySelector(".inputSection-prioritySelect").value
 		});
+
+		if (!this.checkIfEmpty(activeFilters)) {
+			store.dispatch({ type: "UNSET_FILTERS" });
+		}
+
 		activeFilters.forEach(filter => {
 			const localNotes = notes;
 			const filterArr = Object.entries(filter)[0];
@@ -49,6 +53,10 @@ class SearchBar {
 				notes = payload;
 			}
 		});
+
+		if (!payload.length) {
+			super.createAlertElem("No notes with these search params");
+		}
 
 		store.dispatch({ type: "FILTER_NOTES", payload: payload });
 	}
@@ -75,12 +83,22 @@ class SearchBar {
 			});
 	}
 
+	openModalEvent(defaultValues) {
+		const modal = document.querySelector(".modalWindow");
+		console.log(modal.classList);
+		modal.classList.toggle("modalWindow");
+		modal.classList.toggle("modalWindow-open");
+		console.log(modal.classList);
+		const description = defaultValues ? defaultValues.description : "";
+		const title = defaultValues ? defaultValues.title : "";
+		modal.querySelector("#description").value = description;
+		modal.querySelector("#title").value = title;
+	}
+
 	addButtonEvent() {
-		document.querySelector(".createButton").addEventListener("click", e => {
-			const modal = document.querySelector(".modalWindow");
-			modal.classList.toggle("modalWindow");
-			modal.classList.toggle("modalWindow-open");
-		});
+		document
+			.querySelector(".createButton")
+			.addEventListener("click", e => this.openModalEvent());
 	}
 }
 

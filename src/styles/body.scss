@@ -71,3 +71,32 @@
 	padding: 16px;
 	border-radius: 6px;
 }
+
+.sideAlert {
+	animation: fade-out 4s forwards;
+	height: 40px;
+	height: fit-content;
+	padding: 12px;
+	position: fixed;
+	top: 16px;
+	right: 16px;
+	background: $orange;
+	border-radius: 6px;
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0, 9;
+	}
+	75% {
+		opacity: 0.8;
+	}
+
+	100% {
+		opacity: 0;
+		display: none;
+	}
+}
