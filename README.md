@@ -5,7 +5,7 @@ Application to comfortably manage planned tasks, made with webpack, vanilla JS +
 # Getting Started
 installation ```npm install```\
 build ```npm run build```\
-run ```npm start```  -> go to localhost:8080
+run ```npm start``` (you have to build before)  -> go to localhost:8080
 
 # Features of the current version:
 - Add item
